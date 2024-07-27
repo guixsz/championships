@@ -26,6 +26,7 @@ public class ChampionshipService {
         championShip.setEndDate(championshipRequest.endDate());
         championShip.setLan(championshipRequest.lan());
         championShip.setPrizePool(championshipRequest.prizePool());
+        championShip.setLocation(championshipRequest.location());
 
         this.championshipRepository.save(championShip);
 
@@ -46,6 +47,7 @@ public class ChampionshipService {
                         championship.getStartDate(),
                         championship.getEndDate(),
                         championship.getPrizePool(),
+                        championship.getLocation(),
                         championship.getLan(),
                         championship.getAddress() != null ? championship.getAddress().getCity() : "",
                         championship.getAddress() != null ? championship.getAddress().getCountry() : "",

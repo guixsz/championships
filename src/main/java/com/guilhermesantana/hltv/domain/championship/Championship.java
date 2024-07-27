@@ -20,19 +20,23 @@ public class Championship {
     private  Boolean lan;
     private BigDecimal prizePool;
 
+    @Enumerated(EnumType.STRING)
+    private EnumLocation location;
+
     @OneToOne(mappedBy = "championship", cascade = CascadeType.ALL)
     private Address address;
 
     public Championship() {
     }
 
-    public Championship(UUID id, String name, LocalDate startDate, LocalDate endDate, Boolean lan, BigDecimal prizePool, Address address) {
+    public Championship(UUID id, String name, LocalDate startDate, LocalDate endDate, Boolean lan, BigDecimal prizePool, EnumLocation location, Address address) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.lan = lan;
         this.prizePool = prizePool;
+        this.location = location;
         this.address = address;
     }
 
@@ -82,6 +86,14 @@ public class Championship {
 
     public void setPrizePool(BigDecimal prizePool) {
         this.prizePool = prizePool;
+    }
+
+    public EnumLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(EnumLocation location) {
+        this.location = location;
     }
 
     public Address getAddress() {
