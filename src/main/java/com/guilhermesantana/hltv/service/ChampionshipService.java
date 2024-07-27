@@ -22,7 +22,8 @@ public class ChampionshipService {
     public Championship createChampionship(ChampionshipRequest championshipRequest){
         Championship championShip = new Championship();
         championShip.setName(championshipRequest.name());
-        championShip.setDate(championshipRequest.date());
+        championShip.setStartDate(championshipRequest.startDate());
+        championShip.setEndDate(championshipRequest.endDate());
         championShip.setLan(championshipRequest.lan());
         championShip.setPrizePool(championshipRequest.prizePool());
 
@@ -42,7 +43,8 @@ public class ChampionshipService {
                 .map(championship -> new ChampionshipResponse(
                         championship.getId(),
                         championship.getName(),
-                        championship.getDate(),
+                        championship.getStartDate(),
+                        championship.getEndDate(),
                         championship.getPrizePool(),
                         championship.getLan(),
                         championship.getAddress() != null ? championship.getAddress().getCity() : "",
@@ -51,5 +53,10 @@ public class ChampionshipService {
                         championship.getAddress() != null ? championship.getAddress().getPublicPlace() : ""
                 ))
                 .toList();
+    }
+
+    public List<Championship> findChampionshipRemote(){
+        List<Championship> championships = this.championshipRepository.findChampionshipRemote();
+        return championships;
     }
 }

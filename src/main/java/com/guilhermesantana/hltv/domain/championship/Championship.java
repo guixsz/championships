@@ -15,7 +15,8 @@ public class Championship {
     private UUID id;
 
     private String name;
-    private LocalDate date;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private  Boolean lan;
     private BigDecimal prizePool;
 
@@ -25,10 +26,11 @@ public class Championship {
     public Championship() {
     }
 
-    public Championship(UUID id, String name, LocalDate date, Boolean lan, BigDecimal prizePool, Address address) {
+    public Championship(UUID id, String name, LocalDate startDate, LocalDate endDate, Boolean lan, BigDecimal prizePool, Address address) {
         this.id = id;
         this.name = name;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.lan = lan;
         this.prizePool = prizePool;
         this.address = address;
@@ -50,12 +52,20 @@ public class Championship {
         this.name = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public Boolean getLan() {

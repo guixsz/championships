@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ListResourceBundle;
 
 @RestController
 @RequestMapping("/championship")
@@ -25,9 +26,15 @@ public class ChampionshipController {
         return ResponseEntity.ok(newChampionship);
     }
 
-    @GetMapping
+    @GetMapping("/lan")
     public ResponseEntity<List<ChampionshipResponse>> findChampionshipsAndAddress(){
         List<ChampionshipResponse> championshipResponses = this.championshipService.findChampionshipsAndAddress();
         return ResponseEntity.ok(championshipResponses);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Championship>> findChampionshipRemote(){
+        List<Championship> championships = this.championshipService.findChampionshipRemote();
+        return ResponseEntity.ok(championships);
     }
 }

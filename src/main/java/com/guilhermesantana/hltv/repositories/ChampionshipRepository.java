@@ -13,4 +13,7 @@ public interface ChampionshipRepository extends JpaRepository<Championship, UUID
 
     @Query("SELECT e FROM Championship e JOIN e.address a")
     List<Championship> findChampionshipsAndAddress();
+
+    @Query("SELECT e FROM Championship e WHERE e.lan = false")
+    List<Championship> findChampionshipRemote();
 }
