@@ -14,7 +14,6 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String publicPlace;
     private String province;
     private String city;
     private String country;
@@ -26,9 +25,8 @@ public class Address {
     public Address() {
     }
 
-    public Address(UUID id, String publicPlace, String province, String city, String country, Championship championship) {
+    public Address(UUID id, String province, String city, String country, Championship championship) {
         this.id = id;
-        this.publicPlace = publicPlace;
         this.province = province;
         this.city = city;
         this.country = country;
@@ -42,15 +40,6 @@ public class Address {
     public void setId(UUID id) {
         this.id = id;
     }
-
-    public String getPublicPlace() {
-        return publicPlace;
-    }
-
-    public void setPublicPlace(String publicPlace) {
-        this.publicPlace = publicPlace;
-    }
-
 
     public String getProvince() {
         return province;

@@ -51,8 +51,7 @@ public class ChampionshipService {
                         championship.getLan(),
                         championship.getAddress() != null ? championship.getAddress().getCity() : "",
                         championship.getAddress() != null ? championship.getAddress().getCountry() : "",
-                        championship.getAddress() != null ? championship.getAddress().getProvince() : "",
-                        championship.getAddress() != null ? championship.getAddress().getPublicPlace() : ""
+                        championship.getAddress() != null ? championship.getAddress().getProvince() : ""
                 ))
                 .toList();
     }

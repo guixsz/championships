@@ -20,7 +20,6 @@ public class AddressService {
         address.setCity(championshipRequest.city());
         address.setCountry(championshipRequest.country());
         address.setProvince(championshipRequest.province());
-        address.setPublicPlace(championshipRequest.publicPLace());
         address.setChampionship(championship);
 
         return addressRepository.save(address);
