@@ -1,7 +1,7 @@
 package com.guilhermesantana.hltv.controller;
 
 import com.guilhermesantana.hltv.domain.team.Team;
-import com.guilhermesantana.hltv.domain.team.TeamReponse;
+import com.guilhermesantana.hltv.domain.team.TeamResponse;
 import com.guilhermesantana.hltv.domain.team.TeamRequest;
 import com.guilhermesantana.hltv.service.TeamService;
 
@@ -35,9 +35,9 @@ public class TeamController {
        return ResponseEntity.ok(team);
     }
 
-    @GetMapping
-    public ResponseEntity<List<TeamReponse>> findTeamAndChampionship(){
-        List<TeamReponse> teamAndChampionship = teamService.findChampionshipAndTeam();
+    @GetMapping("/{id}")
+    public ResponseEntity<List<TeamResponse>> findTeamAndChampionship(@PathVariable("id") UUID uuid){
+        List<TeamResponse> teamAndChampionship = teamService.findChampionshipAndTeam(uuid);
         return ResponseEntity.ok(teamAndChampionship);
     }
 }

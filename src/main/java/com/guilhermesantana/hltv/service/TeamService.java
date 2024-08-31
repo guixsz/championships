@@ -1,14 +1,17 @@
 package com.guilhermesantana.hltv.service;
 
 import com.guilhermesantana.hltv.domain.championship.Championship;
+import com.guilhermesantana.hltv.domain.championship.ChampionshipResponse;
+import com.guilhermesantana.hltv.domain.championship.ChampionshipTeamResponse;
 import com.guilhermesantana.hltv.domain.team.Team;
-import com.guilhermesantana.hltv.domain.team.TeamReponse;
+import com.guilhermesantana.hltv.domain.team.TeamResponse;
 import com.guilhermesantana.hltv.domain.team.TeamRequest;
 import com.guilhermesantana.hltv.repositories.TeamRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
@@ -41,17 +44,26 @@ public class TeamService {
         return this.teamRepository.save(team);
     }
 
-    public List<TeamReponse> findChampionshipAndTeam(){
-        List<Team> teamList = this.teamRepository.findTeamAndChampionships();
+    public List<TeamResponse> findChampionshipAndTeam(UUID id){
+        List<Team> teamList = this.teamRepository.findTeamAndChampionships(id);
         return teamList.stream()
-                .map(team -> new TeamReponse(
+                .map(team -> new TeamResponse(
                         team.getId(),
                         team.getName(),
                         team.getCeo(),
                         team.getCnpj(),
                         team.getFoundedYear(),
                         team.getFounded(),
-                        team.getChampionshipTeam()
+                        team.getChampionshipTeam().stream()
+                                .map(championship -> new ChampionshipTeamResponse(
+                                        championship.getName(),
+                                        championship.getStartDate(),
+                                        championship.getEndDate(),
+                                        championship.getPrizePool(),
+                                        championship.getLocation()
+                                ))
+
+                                .collect(Collectors.toSet())
                 ))
                 .toList();
     }
