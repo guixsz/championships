@@ -7,6 +7,7 @@ import com.guilhermesantana.hltv.repositories.ChampionshipRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ChampionshipService {
@@ -17,6 +18,11 @@ public class ChampionshipService {
     public ChampionshipService(ChampionshipRepository championshipRepository, AddressService addressService){
         this.championshipRepository = championshipRepository;
         this.addressService = addressService;
+    }
+
+    public Championship findById(UUID championshipId){
+        Championship championship = championshipRepository.findById(championshipId).orElseThrow(() -> new IllegalArgumentException("championship not found"));
+        return championship;
     }
 
     public Championship createChampionship(ChampionshipRequest championshipRequest){
